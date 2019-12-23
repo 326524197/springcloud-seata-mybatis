@@ -21,6 +21,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
+        <ecwid.consul.version>1.4.4</ecwid.consul.version>
     </properties>
 
     <dependencies>
@@ -32,10 +33,26 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
+        <!-- 服务注册中心 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>com.ecwid.consul</artifactId>
+                    <groupId>consul-api</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <!-- 替换consul-discovery里的 ecwid.consul的 版本,seata0.9需要配合此版本-->
+        <dependency>
+            <groupId>com.ecwid.consul</groupId>
+            <artifactId>consul-api</artifactId>
+            <version>${ecwid.consul.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-alibaba-seata</artifactId>

@@ -10,20 +10,22 @@ spring:
     alibaba:
       seata:
         tx-service-group: fsp_tx_group
+  consul:
+    host: 127.0.0.1
+    port: 8500
+    config:
+      format: yaml
+    discovery:
+      serviceName: seat-storage
+      # 健康检查地址使用ip
+      prefer-ip-address: true
+      # 实例名
+      instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
 server:
   port: 8083
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-eureka:
-  server: # 官方不存在的配置（自定义配置）
-    host: 127.0.0.1
-    port: 8761
-  client:
-    enabled: true
-    serviceUrl:
-      defaultZone: http://${eureka.server.host}:${eureka.server.port}/eureka
-    registryFetchIntervalSeconds: 5 # 5 秒轮训一次
-  instance:
-    instanceId: ${spring.application.name}:${server.port}
+
