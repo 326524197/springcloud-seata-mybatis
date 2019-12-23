@@ -2,7 +2,7 @@ spring:
   application:
     name: seat-account
   datasource:
-    url: jdbc:mysql://192.168.171.101:3306/seat-account?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:33060/seat-account?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
