@@ -29,6 +29,7 @@
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <seata.version>0.9.0</seata.version>
+        <ecwid.consul.version>1.4.4</ecwid.consul.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,37 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure-processor</artifactId>
+        </dependency>
+
+        <!-- 服务注册中心 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>com.ecwid.consul</artifactId>
+                    <groupId>consul-api</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 服务配置中心 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-config</artifactId>
+        </dependency>
+
+        <!-- 服务运行状态 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 替换consul-discovery里的 ecwid.consul的 版本,seata0.9需要配合此版本-->
+        <dependency>
+            <groupId>com.ecwid.consul</groupId>
+            <artifactId>consul-api</artifactId>
+            <version>${ecwid.consul.version}</version>
         </dependency>
 
     </dependencies>

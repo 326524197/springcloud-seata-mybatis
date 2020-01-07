@@ -1,11 +1,11 @@
 server:
-  port: 8082
+  port: 8081
 
 spring:
   application:
-    name: seat-order
+    name: seat-account
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/seat-account?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: admin123
@@ -20,15 +20,20 @@ spring:
         serviceName: ${spring.application.name}
         # 健康检查地址使用ip
         prefer-ip-address: true
+        healthCheckPath: /actuator/health
         # 实例名
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 
     alibaba:
       seata:
-        tx-service-group: etmpro
+        tx-service-group: my_test_tx_group
 
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+
+feign:
+  hystrix:
+    enabled: false
 

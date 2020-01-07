@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
@@ -17,15 +17,16 @@ spring:
       config:
         format: yaml
       discovery:
-        serviceName: seat-account
+        serviceName: ${spring.application.name}
         # 健康检查地址使用ip
         prefer-ip-address: true
+        healthCheckPath: /actuator/health
         # 实例名
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 
     alibaba:
       seata:
-        tx-service-group: etmpro
+        tx-service-group: my_test_tx_group
 
 mybatis-plus:
   global-config:
