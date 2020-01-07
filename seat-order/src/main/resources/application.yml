@@ -1,12 +1,27 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: seat-order
   datasource:
-    url: jdbc:mysql://localhost:33060/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 666666
+    password: admin123
   cloud:
+    consul:
+      host: 192.168.7.33
+      port: 8500
+      config:
+        format: yaml
+      discovery:
+        serviceName: seat-order
+        # 健康检查地址使用ip
+        prefer-ip-address: true
+        # 实例名
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
     alibaba:
       seata:
         tx-service-group: fsp_tx_group
@@ -14,20 +29,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-server:
-  port: 8082
-
-  consul:
-    host: 127.0.0.1
-    port: 8500
-    config:
-      format: yaml
-    discovery:
-      serviceName: seat-order
-      # 健康检查地址使用ip
-      prefer-ip-address: true
-      # 实例名
-      instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 
 feign:
   hystrix:

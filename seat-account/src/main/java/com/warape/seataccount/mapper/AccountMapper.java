@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 /**
  * @program: eureka-seata-mybatis
  * @description:
- * @author: 万明宇 (warApe)
  * @create: 2019-10-14 15:24
  **/
 public interface AccountMapper extends BaseMapper<Account> {
