@@ -2,7 +2,7 @@
 项目采用springboot+springCloud+mybatis-plus,聚合工程管理jar包
 
 ## file.conf中添加配置:
-- DataSourceProxy加载 只有spring.datasource.autoproxy为true才会使用seata的DataSource
+- DataSourceProxy加载 只有spring.datasource.autoproxy 为true才会使用seata的DataSource
 - 具体代码请看io.seata.spring.annotation.GlobalTransactionScanner.postProcessBeforeInitialization
 ```
 support {
@@ -14,15 +14,14 @@ support {
 }
 ```
 ## seata版本
-- 2019-10-15 version:0.8.1
+- 2019-10-15 version:0.9.0
 
 ## 配置文件
 - application.yml  需要修改数据源
 - 需要导入sql
-- 如果eureka端口发生改变请在registry.conf中同步更改eureka的地址
 
 ## 启动步骤
-1. 启动eureka
+1. 启动consul
 2. 启动seata服务端
 3. 依次启动项目 seat-account -> seat-storage -> seat-order
 
