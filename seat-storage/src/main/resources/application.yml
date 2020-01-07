@@ -1,18 +1,16 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
   application:
     name: seat-storage
   datasource:
-    url: jdbc:mysql://localhost:3306/seat-storage?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seat-storage?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: admin123
+
   cloud:
-    alibaba:
-      seata:
-        tx-service-group: fsp_tx_group
     consul:
       host: 192.168.7.33
       port: 8500
@@ -24,6 +22,10 @@ spring:
         prefer-ip-address: true
         # 实例名
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+    alibaba:
+      seata:
+        tx-service-group: etmpro
 
 mybatis-plus:
   global-config:

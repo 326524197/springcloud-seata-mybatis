@@ -3,9 +3,9 @@ server:
 
 spring:
   application:
-    name: seat-account
+    name: seat-order
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/seat-account?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: admin123

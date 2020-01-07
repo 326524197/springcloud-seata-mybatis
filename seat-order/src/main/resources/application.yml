@@ -1,14 +1,15 @@
 server:
-  port: 8082
+  port: 8081
 
 spring:
   application:
     name: seat-order
   datasource:
-    url: jdbc:mysql://localhost:3306/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: admin123
+
   cloud:
     consul:
       host: 192.168.7.33
@@ -16,7 +17,7 @@ spring:
       config:
         format: yaml
       discovery:
-        serviceName: seat-order
+        serviceName: ${spring.application.name}
         # 健康检查地址使用ip
         prefer-ip-address: true
         # 实例名
@@ -24,15 +25,10 @@ spring:
 
     alibaba:
       seata:
-        tx-service-group: fsp_tx_group
+        tx-service-group: etmpro
+
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
 
-feign:
-  hystrix:
-    enabled: false
-logging:
-  level:
-    com.warape.seatorder.mapper: debug
