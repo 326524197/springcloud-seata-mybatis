@@ -6,13 +6,13 @@ spring:
     name: seat-storage
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/seat-storage?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: admin123
 
   cloud:
     consul:
-      host: 192.168.7.33
+      host: 127.0.0.1
       port: 8500
       config:
         format: yaml

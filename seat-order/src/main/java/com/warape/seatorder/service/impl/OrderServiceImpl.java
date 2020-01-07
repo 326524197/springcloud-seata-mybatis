@@ -43,13 +43,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         orderMapper.insert(order1);
 
         //远程方法 扣减库存
+        LOGGER.info("------->扣减库存storage开始");
         storageApi.decrease(order1.getProductId(), order1.getCount());
+        LOGGER.info("------->扣减库存storage结束");
 
         //远程方法 扣减账户余额
 
-        LOGGER.info("------->扣减账户开始order中");
+        LOGGER.info("------->扣减账户account开始");
         accountApi.decrease(order1.getUserId(), order1.getMoney());
-        LOGGER.info("------->扣减账户结束order中");
+        LOGGER.info("------->扣减账户account结束");
 
         LOGGER.info("------->交易结束");
     }
