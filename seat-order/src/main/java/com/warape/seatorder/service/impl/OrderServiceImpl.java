@@ -36,7 +36,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
     public void create(Order order1) {
         LOGGER.info("------->交易开始");
-        //本地方法
+        //本地方法 产生订单
+        LOGGER.info("------->产生订单");
         orderMapper.insert(order1);
 
         //远程方法 扣减库存
@@ -45,7 +46,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         LOGGER.info("------->扣减库存storage结束");
 
         //远程方法 扣减账户余额
-
         LOGGER.info("------->扣减账户account开始");
         accountApi.decrease(order1.getUserId(), order1.getMoney());
         LOGGER.info("------->扣减账户account结束");

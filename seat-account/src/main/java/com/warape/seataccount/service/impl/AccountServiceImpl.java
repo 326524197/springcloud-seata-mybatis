@@ -27,16 +27,16 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
      */
     @Override
     public void decrease(Long userId, BigDecimal money) {
-        LOGGER.info("------->扣减账户开始account中");
+        LOGGER.info("------->扣减账户开始");
         //模拟超时异常，全局事务回滚
-        /*try {
+        try {
             Thread.sleep(30*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         //模拟出现异常
         //int i = 1 / 0;
         accountMapper.decrease(userId, money);
-        LOGGER.info("------->扣减账户结束account中");
+        LOGGER.info("------->扣减账户结束");
     }
 }
