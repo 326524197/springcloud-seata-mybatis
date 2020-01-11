@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("orderServiceImpl")
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
@@ -33,7 +34,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      * 2.不添加本地事务：创建订单，扣减库存
      */
     @Override
-    @GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
+    //@GlobalTransactional(name = "fsp-create-order",rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public void create(Order order1) {
         LOGGER.info("------->交易开始");
         //本地方法 产生订单

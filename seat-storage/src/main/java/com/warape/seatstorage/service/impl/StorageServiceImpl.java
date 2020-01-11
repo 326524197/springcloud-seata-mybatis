@@ -29,6 +29,12 @@ public class StorageServiceImpl extends ServiceImpl<StorageMapper, Storage> impl
     @Override
     public void decrease(Long productId, Integer count) {
         LOGGER.info("------->扣减库存开始");
+        //模拟超时异常，全局事务回滚
+        try {
+            Thread.sleep(30*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         storageMapper.decrease(productId,count);
         LOGGER.info("------->扣减库存结束");
     }

@@ -6,12 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-/**
- * @program: eureka-seata-mybatis
- * @description:
- * @author: 万明宇 (warApe)
- * @create: 2019-10-14 14:12
- **/
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.warape.seatorder.mapper")
